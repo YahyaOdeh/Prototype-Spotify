@@ -1,18 +1,34 @@
 package android.example.spotifyclone;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
+
+import com.google.android.material.bottomappbar.BottomAppBar;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 
-public class LikedSongs extends AppCompatActivity {
+public class LikedSongs extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_liked_songs);
+
+        BottomNavigationView buttonNavHome = findViewById(R.id.home_menu);
+
+        BottomAppBar bottomBar = findViewById(R.id.bottom_nav_bar);
+
+        bottomBar.setBackground(null);
+
+        buttonNavHome.setOnItemSelectedListener(this::onNavigationItemSelected);
 
         final ArrayList<Songs> songs = new ArrayList<Songs>();
         songs.add(new Songs("With Me", "Marc Benjamin, Daecolm", R.drawable.marc));
@@ -32,5 +48,20 @@ public class LikedSongs extends AppCompatActivity {
 
         listView.setAdapter(adapter);
 
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+        int id = item.getItemId();
+
+        if (id == R.id.home_button) {
+
+            Intent likedSongsIntent = new Intent(LikedSongs.this, MainActivity.class);
+            startActivity(likedSongsIntent);
+
+        }
+
+        return false;
     }
 }
