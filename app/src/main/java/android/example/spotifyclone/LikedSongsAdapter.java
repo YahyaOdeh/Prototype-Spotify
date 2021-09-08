@@ -17,8 +17,8 @@ import java.util.List;
 
 public class LikedSongsAdapter extends ArrayAdapter<Songs> {
 
-    public LikedSongsAdapter(@NonNull Context context, @NonNull List<Songs> words) {
-        super(context, 0, words);
+    public LikedSongsAdapter(@NonNull Context context, @NonNull List<Songs> songs) {
+        super(context, 0, songs);
     }
 
     @NonNull
